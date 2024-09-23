@@ -9,8 +9,8 @@ let xRaqueteOponente = 585;
 let yRaqueteOponente = 150;
 
 //velocidade da bolinha
-let velocidadeXBolinha = 4;
-let velocidadeYBolinha = 6;
+let velocidadeXBolinha = 2;
+let velocidadeYBolinha = 1;
 
 //variáveis da raquete
 let xRaquete = 5;
@@ -89,11 +89,17 @@ function movimentaMinhaRaquete() {
 
 function verificaColisaoRaquete(x, y) {
     colidiu = collideRectCircle(x, y, raqueteComprimento, raqueteAltura, xBolinha, yBolinha, raio);
-    if (colidiu){
-        velocidadeXBolinha *= -1
-      bolabatendobebe.play ()
-  }
+    if (colidiu) {
+        if (xBolinha < width / 2) {
+            xBolinha = x + raqueteComprimento + raio;
+        } else {
+            xBolinha = x - raio;
+        }
+        velocidadeXBolinha *= -1;
+        bolabatendobebe.play();
+    }
 }
+
 
 function movimentaRaqueteOponente() {
      if(keyIsDown(87)) {
